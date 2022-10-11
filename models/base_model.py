@@ -15,7 +15,7 @@ class BaseModel():
 
     def __str__(self):
         """ prints the str """
-        return(f"[self.__class__.__name__] (self.id) self.__dic__")
+        return(f"[self.__class__.__name__] (self.id) self.__dict__")
 
     def save(self):
         """ updates the atribute with the current datetime """
