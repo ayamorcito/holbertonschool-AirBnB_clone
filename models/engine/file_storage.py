@@ -39,9 +39,11 @@ class FileStorage():
             Serializes the __objects dictionary
             to the JSON file path __file_path
         """
-        js_str = json.dumps(self.__objects)
-        with open(self.__file_path, 'w+', encoding="UTF-8") as l_st:
-            l_st.write(js_str)
+        obj_cp = self.__objects.copy()
+        for key, value in obj_cp.items():
+            obj_cp[key] = value.to_dict()
+        with open(self.__file_path, 'w') as l_st:
+            json.dump(obj_cp, l_st)
 
     def reload(self):
         """
@@ -51,6 +53,7 @@ class FileStorage():
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="UTF-8") as l_st:
                 rld = json.load(l_st)
+                
                 self.__objects = rld
         else:
             pass
