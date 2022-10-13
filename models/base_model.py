@@ -29,13 +29,13 @@ class BaseModel():
 
     def save(self):
         """ updates the atribute with the current datetime """
-        storage.save()
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """ returns a dictionary containing keys/values of instance """
         my_dic = self.__dict__.copy()
         my_dic["created_at"] = self.created_at.isoformat()
-        my_dic["updated_at"] = self.created_at.isoformat()
+        my_dic["updated_at"] = self.updated_at.isoformat()
         my_dic["__class__"] = self.__class__.__name__
         return my_dic
