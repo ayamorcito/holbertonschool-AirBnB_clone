@@ -39,9 +39,15 @@ class FileStorage():
             Serializes the __objects dictionary
             to the JSON file path __file_path
         """
+        from models.base_model import BaseModel
         obj_cp = self.__objects.copy()
         for key, value in obj_cp.items():
-            obj_cp[key] = value.to_dict()
+            try:
+                obj_cp[key] = value.to_dict()
+            except Exception:
+                if type(value) == dict:
+                    obj_cp[key] = value
+
         with open(self.__file_path, 'w') as l_st:
             json.dump(obj_cp, l_st)
 
@@ -50,10 +56,14 @@ class FileStorage():
             Deserializes the __objects dictionary
             from the JSON file path __file_path
         """
+        from models.base_model import BaseModel
+
+        class_dict = {
+            "BaseModel": BaseModel
+        }
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="UTF-8") as l_st:
                 rld = json.load(l_st)
-                
-                self.__objects = rld
-        else:
-            pass
+                for key, value in rld.items():
+                    cls = class_dict[value["__class__"]]
+                    self.__objects[key] = cls(**value)
