@@ -22,5 +22,9 @@ class HBNBCommand(cmd.Cmd):
         """ EOF reached - exit """
         return True
 
+    def emptyline(self, args):
+        """ do nothing """
+        return True
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
