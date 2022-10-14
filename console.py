@@ -14,10 +14,6 @@ class HBNBCommand(cmd.Cmd):
         """ test """
         exit()
 
-    def do_help(self, args):
-        """ test """
-        return True
-
     def do_EOF(self, args):
         """ EOF reached - exit """
         exit()
