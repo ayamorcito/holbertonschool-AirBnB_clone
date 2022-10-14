@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, args):
         """ EOF reached - exit """
-        return True
+        pass
 
     def emptyline(self, args):
         """ do nothing """
