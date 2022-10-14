@@ -12,7 +12,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, args):
         """ test """
-        return True
+        exit()
 
     def do_help(self, args):
         """ test """
@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, args):
         """ EOF reached - exit """
-        pass
+        exit()
 
     def emptyline(self, args):
         """ do nothing """
