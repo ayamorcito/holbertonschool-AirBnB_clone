@@ -14,12 +14,12 @@ class HBNBCommand(cmd.Cmd):
         """ test """
         exit()
 
-    def do_EOF(self, args):
+    def do_EOF(self):
         """ EOF reached - exit """
         print("")
         exit()
 
-    def emptyline(self, args):
+    def emptyline(self):
         """ do nothing """
         pass
 
