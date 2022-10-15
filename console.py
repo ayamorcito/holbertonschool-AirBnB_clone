@@ -13,29 +13,29 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ create function """
-        pass
+        print("Create called")
 
     def do_show(self, args):
         """ show function """
-        pass
+        print("Show called")
 
     def do_destroy(self, args):
         """ destroy function """
-        pass
+        print("Destroy called")
 
     def do_all(self, args):
         """ all function """
-        pass
+        print("All called")
 
     def do_update(self, args):
         """ update function """
-        pass
+        print("Update called")
 
     def do_quit(self):
         """ test """
         exit()
 
-    def do_EOF(self):
+    def do_EOF(self, args):
         """ EOF reached - exit """
         print("")
         exit()
