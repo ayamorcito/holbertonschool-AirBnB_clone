@@ -5,12 +5,33 @@
 """
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
     """ Command """
     prompt = '(hbnb) '
     file = None
 
-    def do_quit(self, args):
+    def do_create(self, args):
+        """ create function """
+        pass
+
+    def do_show(self, args):
+        """ show function """
+        pass
+
+    def do_destroy(self, args):
+        """ destroy function """
+        pass
+
+    def do_all(self, args):
+        """ all function """
+        pass
+
+    def do_update(self, args):
+        """ update function """
+        pass
+
+    def do_quit(self):
         """ test """
         exit()
 
