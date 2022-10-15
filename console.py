@@ -31,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
         """ update function """
         print("Update called")
 
-    def do_quit(self):
+    def do_quit(self, args):
         """ test """
         exit()
 
