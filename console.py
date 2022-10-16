@@ -6,7 +6,7 @@
 
 import cmd
 from models.base_model import BaseModel
-from models import storage as FS
+from models import storage
 
 
 def sub_existance(st):
@@ -23,7 +23,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     file = None
 
-    def do_create(self, args):
+    def do_create(self, args):        from models.base_model import BaseModel
         """ create function """
         args = args.split()
         if len(args) == 0:

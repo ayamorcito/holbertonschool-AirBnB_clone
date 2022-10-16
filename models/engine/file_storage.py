@@ -5,6 +5,7 @@
 """
 import json
 from os import path
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -39,7 +40,6 @@ class FileStorage():
             Serializes the __objects dictionary
             to the JSON file path __file_path
         """
-        from models.base_model import BaseModel
         obj_cp = self.__objects.copy()
         for key, value in obj_cp.items():
             try:
@@ -56,7 +56,6 @@ class FileStorage():
             Deserializes the __objects dictionary
             from the JSON file path __file_path
         """
-        from models.base_model import BaseModel
 
         class_dict = {
             "BaseModel": BaseModel,
