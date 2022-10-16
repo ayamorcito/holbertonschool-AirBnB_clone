@@ -3,6 +3,7 @@
     Console entry point for HBnB
     object and data manipulation
 """
+
 import cmd
 from models.base_model import BaseModel
 from models import storage as FS
