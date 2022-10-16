@@ -14,8 +14,8 @@ def sub_existance(st):
     try:
         st = eval(st)
         return True
-    except NameErro
-    return False
+    except NameError:
+        return False
 
 
 class HBNBCommand(cmd.Cmd):
