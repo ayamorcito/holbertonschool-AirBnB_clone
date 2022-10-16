@@ -59,7 +59,8 @@ class FileStorage():
         from models.base_model import BaseModel
 
         class_dict = {
-            "BaseModel": BaseModel
+            "BaseModel": BaseModel,
+            "User": User
         }
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="UTF-8") as l_st:
