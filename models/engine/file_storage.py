@@ -60,7 +60,12 @@ class FileStorage():
 
         class_dict = {
             "BaseModel": BaseModel,
-            "User": User
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
         }
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="UTF-8") as l_st:
