@@ -14,8 +14,9 @@ def sub_existance(st):
     try:
         st = eval(st)
         return True
-    except NameError:
-        return False
+    except NameErro
+    return False
+
 
 class HBNBCommand(cmd.Cmd):
     """ Command """
@@ -31,7 +32,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif args[0] == 'BaseModel':
             new_elem = BaseModel()
-            new_elem.save()
             print(new_elem.id)
 
     def do_show(self, args):
@@ -43,9 +43,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         if not args[1]:
             print("** instance id missing **")
-        for k, v in FS.all():
-            if 
-
 
     def do_destroy(self, args):
         """ destroy function """
