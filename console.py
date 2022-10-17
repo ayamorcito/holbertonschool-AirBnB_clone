@@ -1,16 +1,20 @@
 #!/usr/bin/python3
 """
-    Console entry point for HBnB
-    object and data manipulation
+    Entry point file for HBnB command
+    console interpreter. Help for each
+    command is found by running the
+    "help" command via this console.
 """
-
 import cmd
+from models import storage
 from models.base_model import BaseModel
-from models import storage as FS
 
 
 def sub_existance(st):
-    """ checks for subclass existance """
+    """
+        Checks whether if a string points
+        to an existing class or subclass
+    """
     try:
         st = eval(st)
         return True
@@ -19,12 +23,21 @@ def sub_existance(st):
 
 
 class HBNBCommand(cmd.Cmd):
-    """ Command """
+    """
+        Command prompt class for HBnB
+        object an data management console.
+    """
     prompt = '(hbnb) '
     file = None
 
     def do_create(self, args):
-        """ create function """
+        """
+            Creates a new instance of the
+            specified class or subclass and
+            prints the associated unique identifier.
+
+            Usage: create <class_name>
+        """
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -35,7 +48,14 @@ class HBNBCommand(cmd.Cmd):
             print(new_elem.id)
 
     def do_show(self, args):
-        """ show function """
+        """
+            Finds and prints an instance of
+            the specified class or subclass
+            if the corresponding ID matches
+            the one specified by the request.
+
+            Usage: show <class_name> <id>
+        """
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -45,7 +65,14 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
 
     def do_destroy(self, args):
-        """ destroy function """
+        """
+            Finds and deletes an instance of
+            the specified class or subclass
+            if the corresponding ID matches
+            the one specified by the request.
+
+            Usage: destroy <class_name> <id>
+        """
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -53,7 +80,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_all(self, args):
-        """ all function """
+        """
+            Finds and prints all instances of
+            the specified class or subclass.
+
+            Usage: all <class_name>
+        """
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -61,7 +93,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, args):
-        """ update function """
+        """
+            Finds and updates an instance of
+            the specified class or subclass
+            if the corresponding ID matches
+            the one specified by the request.
+
+            Usage: update <class name> <id> <attribute> "<value>"
+        """
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
