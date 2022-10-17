@@ -5,8 +5,10 @@
     HBnB console object manipulation.
 """
 import json
+import sys
 from os import path
-
+if "BaseModel" not in sys.modules:
+    from models.base_model import BaseModel
 
 class FileStorage():
     """
