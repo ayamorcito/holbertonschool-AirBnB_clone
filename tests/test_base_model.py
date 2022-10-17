@@ -50,3 +50,4 @@ class TestBaseModel(unittest.TestCase):
     def test_docstring(self):
         """function to check docstring fo Basemodel"""
         self.assertIsNotNone(BaseModel.__doc__)
+
