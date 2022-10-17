@@ -51,14 +51,14 @@ class TestBaseModel(unittest.TestCase):
         """function to check docstring fo Basemodel"""
         self.assertIsNotNone(BaseModel.__doc__)
 
-    def test_base_from_dict(self):
-        """Testing task 4, with kwargs init"""
-        my_model = BaseModel()
-        my_model_json = my_model.to_dict()
-        my_new_model = BaseModel(**my_model_json)
-        self.assertEqual(my_model_json, my_new_model.to_dict())
-        self.assertTrue(type(my_new_model.id) == str)
-        self.assertTrue(type(my_new_model.created_at) == datetime)
-        self.assertTrue(type(my_new_model.updated_at) == datetime)
-
+    def test_to_dict(self):
+        """testing to dict function"""
+        test = BaseModel()
+        my_model = test.to_dict()
+        self.assertTrue(type(my_model["created_at"] == str))
+        self.assertTrue(type(my_model["updated_at"] == str))
+        self.assertTrue(type(test.created_at) == datetime)
+        self.assertTrue(type(test.updated_at) == datetime)
+        self.assertEqual(my_model["created_at"], test.created_at.isoformat())
+        self.assertEqual(my_model["updated_at"], test.updated_at.isoformat())
 
