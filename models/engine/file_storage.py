@@ -6,7 +6,13 @@
 """
 import json
 from os import path
-from models.__init__ import cls_dict
+from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class FileStorage():
@@ -79,4 +85,4 @@ class FileStorage():
             with open(self.__file_path, 'r', encoding="UTF-8") as l_st:
                 rld = json.load(l_st)
                 for key, value in rld.items():
-                    self.__objects[key] = cls_dict[value["__class__"]](**value)
+                    self.__objects[key] = eval(value["__class__"])(**value)
