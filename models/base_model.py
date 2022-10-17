@@ -6,9 +6,11 @@
     Contains the BaseModel class and all its respective
     methods, documented in class docstring.
 """
+from sys import modules
 from uuid import uuid4
 from datetime import datetime
-from models import storage
+if "storage" not in modules:
+    from models import storage
 
 
 class BaseModel():
