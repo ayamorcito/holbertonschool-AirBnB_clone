@@ -6,11 +6,9 @@
     Contains the BaseModel class and all its respective
     methods, documented in class docstring.
 """
-from sys import modules
 from uuid import uuid4
 from datetime import datetime
-if "storage" not in modules:
-    from models import storage
+import models
 
 
 class BaseModel():
@@ -33,7 +31,7 @@ class BaseModel():
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            models.storage.new(self)
         else:
             for key, value in kwargs.items():
                 if key not in {'__class__', 'created_at', 'updated_at'}:
@@ -55,7 +53,7 @@ class BaseModel():
             object to the current database.
         """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """
