@@ -1,12 +1,16 @@
 #!/usr/bin/python3
 """
-State Base Module
+    State class file for object creation
+    and manipulation in HBnB console.
 """
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
     """
-    Class State
+        State class implementation
+
+        Attributes:
+        name - string representing the name of the state
     """
     name = ""

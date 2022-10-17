@@ -17,10 +17,8 @@ class BaseModel():
         Unique ID assignement based on UUID4.
 
         Attributes:
-        created_at - datetime object representing
-        when an instance was created.
-        updated_at - datetime object representing
-        when an instance was updated.
+        created_at - datetime object representing when an instance was created.
+        updated_at - datetime object representing when an instance was updated.
     """
 
     def __init__(self, **kwargs):
