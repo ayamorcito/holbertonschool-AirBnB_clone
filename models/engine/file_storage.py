@@ -56,7 +56,11 @@ class FileStorage():
         """
         obj_cp = self.__objects.copy()
         for key, value in obj_cp.items():
-            value = value.to_dict()
+            try:
+                obj_cp[key] = value.to_dict()
+            except Exception:
+                if type(value) == dict:
+                    obj_cp[key] = value
         with open(self.__file_path, 'w', encoding="UTF-8") as l_st:
             json.dump(obj_cp, l_st)
 
