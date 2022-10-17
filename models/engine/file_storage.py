@@ -4,11 +4,8 @@
     serialization and deserialization of
     HBnB console object manipulation.
 """
-from sys import modules
 import json
 from os import path
-if "BaseModel" not in modules:
-    from models.base_model import BaseModel
 
 
 class FileStorage():
