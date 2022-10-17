@@ -6,6 +6,7 @@
 """
 import json
 from os import path
+from models.base_models import BaseModel
 
 
 class FileStorage():
