@@ -64,8 +64,8 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
                 else:
                     for key, value in storage.all().items():
-                        if value.__class__.__name__ == args[0]:
-                            elem = value if value.id == args[1] and not elem else None
+                        if value.__class__.__name__ == args[0] and value.id == args[1]:
+                            elem = value 
                     if elem is not None:
                         print(elem)
                     else:
