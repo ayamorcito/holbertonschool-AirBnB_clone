@@ -68,8 +68,38 @@ class FileStorage():
             except TypeError:
                 if isinstance(value, dict):
                     obj_cp[key] = value
-        with open(self.__file_path, 'w', encoding="UTF-8") as l_st:
+        with open(self.__file_path, 'w+', encoding="UTF-8") as l_st:
             json.dump(obj_cp, l_st)
+
+    def delete(self, id):
+        """
+            Deletes an object from collection
+            from the previosuly defined localStorage
+            instance via serialization.
+        """
+        dkey = None
+        obj_cp = self.__objects.copy()
+        for key, value in obj_cp.items():
+            if value.id == id:
+                dkey = key
+                del self.__objects[dkey]
+            if dkey:
+                self.save()
+                return True
+        return False
+
+    def update(self, id, attr, value):
+        """
+            Updates an object from collection
+            from the previosuly defined localStorage
+            instance via serialization.
+        """
+        obj_cp = self.__objects.copy()
+        for key, value in obj_cp.items():
+            if value.id == id:
+                self.__objects.update({attr: value})
+                return True
+        return False
 
     def reload(self):
         """
