@@ -8,18 +8,12 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
-
-
-def sub_existance(st):
-    """
-        Checks whether if a string points
-        to an existing class or subclass
-    """
-    try:
-        st = eval(st)
-        return True
-    except NameError:
-        return False
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -41,11 +35,14 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
-        if not sub_existance(args[0]):
-            print("** class doesn't exist **")
-        elif args[0] == 'BaseModel':
-            new_elem = BaseModel()
-            print(new_elem.id)
+        else:
+            try:
+                cl = eval(args[0])
+                new_element = cl()
+                new_element.save()
+                print(new_element.id)
+            except NameError:
+                print("** class doesn't exist **")
 
     def do_show(self, args):
         """
@@ -56,13 +53,25 @@ class HBNBCommand(cmd.Cmd):
 
             Usage: show <class_name> <id>
         """
+        elem = None
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
-        if not sub_existance(args[0]):
-            print("** class doesn't exist **")
-        if not args[1]:
-            print("** instance id missing **")
+        else:
+            try:
+                cl = eval(args[0])
+                if len(args) < 2:
+                    print("** instance id missing **")
+                else:
+                    for key, value in storage.all().items():
+                        if value.__class__.__name__ == args[0] and value.id == args[1]:
+                            elem = value 
+                    if elem is not None:
+                        print(elem)
+                    else:
+                        print("** no instance found **")
+            except NameError:
+                print("** class doesn't exist **")
 
     def do_destroy(self, args):
         """
@@ -76,8 +85,19 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
-        if not sub_existance(args[0]):
-            print("** class doesn't exist **")
+        else:
+            ekey = None
+            try:
+                cl = eval(args[0])
+                if len(args) < 2:
+                    print("** instance id missing **")
+                else:
+                    if storage.delete(args[1]):
+                        pass
+                    else:
+                        print("** no instance found **")
+            except NameError:
+                print("** class doesn't exist **")
 
     def do_all(self, args):
         """
@@ -87,10 +107,18 @@ class HBNBCommand(cmd.Cmd):
             Usage: all <class_name>
         """
         args = args.split()
+        ls = []
         if len(args) == 0:
             print("** class name missing **")
-        if not sub_existance(args[0]):
-            print("** class doesn't exist **")
+        else:
+            try:
+                cl = eval(args[0])
+                for key, value in storage.all().items():
+                    if value.__class__.__name__ == args[0]:
+                        ls.append(str(value))
+                print(ls)
+            except NameError:
+                print("** class doesn't exist **")
 
     def do_update(self, args):
         """
@@ -104,8 +132,24 @@ class HBNBCommand(cmd.Cmd):
         args = args.split()
         if len(args) == 0:
             print("** class name missing **")
-        if not sub_existance(args[0]):
-            print("** class doesn't exist **")
+        else:
+            try:
+                cl = eval(args[0])
+                if len(args) < 2:
+                    print("** instance id missing **")
+                    return
+                if len(args) < 3:
+                    print("** attribute name missing **")
+                    return
+                if len(args) < 4:
+                    print("** value missing **")
+                    return
+                if storage.update(args[1], args[2], args[3]):
+                    storage.save()
+                else:
+                    print("** no instance found **")
+            except NameError:
+                print("** class doesn't exist **")
 
     def do_quit(self, args):
         """ test """
